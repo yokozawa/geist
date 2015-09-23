@@ -1,0 +1,21 @@
+- if notice
+  = notice
+
+%h1 マイページ
+
+%h2 他者への評価
+- if current_member.to_members.present?
+  %ul
+    - current_member.to_members.each do |to_member|
+      %li
+        = link_to "#{to_member.name}さんの評価を回答する", member_new_answers_path(to_member)
+- else
+  評価対象者はいません
+
+%h2="#{current_member.name}さんへの評価"
+- if current_member.wait_answer_list.present?
+  評価中です、結果集計までしばらくお待ち下さい
+- elsif current_member.answers.present?
+  = link_to "自分の評価集計結果を見る", member_path(current_member)
+- else
+  評価待ち、評価結果はありません。

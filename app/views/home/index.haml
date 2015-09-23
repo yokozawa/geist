@@ -1,0 +1,22 @@
+%h1
+  ITANDI geist
+
+%h2 ログイン
+
+= form_for :member, url: member_session_path do |f|
+  %fieldset
+    %label メール
+    = f.email_field :email, placeorder: "geist@itandi.co.jp"
+  %fieldset
+    %label パスワード
+    = f.password_field :password
+
+  %fieldset
+    %label ログインキープ
+    = f.check_box :remember_me
+
+  %fieldset
+    %label ログイン
+    = f.submit "sign in"
+
+  = link_to "Forgot your password?", new_member_password_path

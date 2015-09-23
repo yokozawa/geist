@@ -1,0 +1,13 @@
+%h1="#{current_member.name}さんの評価"
+
+- @questions.each do |q|
+  %dl
+    %dt= q.subtitle
+    - if q.text?
+      %dd
+        %ul
+          - q.my_answers.each do |a|
+            %li=a.body
+    - if q.radio_5?
+      %dd
+        = q.my_answers.average(:score).to_f

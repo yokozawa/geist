@@ -1,0 +1,19 @@
+%h1="#{@member.name}さんの評価を入力する"
+
+= form_for @member, url: member_create_answers_path do |f|
+  %ul
+  = f.fields_for :answers do |af|
+    - if af.object.id.nil?
+      %li
+        = af.hidden_field :question_id
+        %label=af.object.question.subtitle
+        %br
+        - if af.object.question.text?
+          = af.text_field :body
+        - if af.object.question.radio_5?
+          - (1..5).each do |n|
+            %label="#{n}点"
+            = af.radio_button :score, n
+            %br
+
+  = f.submit "評価を送信する"
