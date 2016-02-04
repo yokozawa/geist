@@ -17,7 +17,7 @@
 /db/*.sqlite3-journal
 
 # ignore secret setting files
-/config/secrets.yml
+# /config/secrets.yml
 /config/database.yml
 
 # for mac
