@@ -9,9 +9,9 @@
         %label=af.object.question.subtitle
         %br
         - if af.object.question.text?
-          = af.text_field :body
+          = af.text_area :body
         - if af.object.question.radio_5?
-          - (1..5).each do |n|
+          - (1..10).each do |n|
             %label="#{n}点"
             = af.radio_button :score, n
             %br
