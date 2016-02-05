@@ -9,7 +9,7 @@
         %label=af.object.question.subtitle
         %br
         - if af.object.question.text?
-          = af.text_area :body
+          = af.text_area :body, {rows: 10, cols: 80}
         - if af.object.question.radio_5?
           - (1..10).each do |n|
             %label="#{n}点"
