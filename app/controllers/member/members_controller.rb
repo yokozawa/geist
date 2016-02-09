@@ -12,13 +12,22 @@ class Member::MembersController < Member::AppController
       answers << Answer.new(answer_param.merge({member_id: params[:member_id]}))
     end
 
-    if Answer.import answers
-      # TODO レコード削除
-      NeedAnswerMember.where(from_member: current_member)
-        .where(to_member: params[:member_id]).delete_all
+    validate = true
+    answers.each do |answer|
+      validate = answer.validate
+    end
+
+    if validate
+      ActiveRecord::Base.transaction do
+        Answer.import answers
+        NeedAnswerMember.where(from_member: current_member)
+          .where(to_member: params[:member_id]).delete_all
+      end
       redirect_to mypage_path, notice: "回答を入力しました"
     else
-      format.html { render :new_answers }
+      new_answers
+      flash[:notice] = "入力必須です"
+      render :new_answers
     end
   end
 
