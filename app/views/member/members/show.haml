@@ -7,10 +7,12 @@
       %dd
         %ul
           - q.my_answers.each do |a|
-            %li=a.body
+            %li
+              = "回答月：a.created_at.strftime(\"%Y-%m\")"
+              = "回答文：a.body"
     - if q.radio_5?
       %dd
         = "平均点：#{q.my_answers.average(:score).to_f.round(2)}"
         %br
         - a = q.my_answers.where("score is not null").pluck(:score)
-        = "中央値：#{a.size % 2 == 0 ? a[a.size/2 - 1, 2].inject(:+) / 2.0 : a[a.size/2]}"	
+        = "中央値：#{a.size % 2 == 0 ? a[a.size/2 - 1, 2].inject(:+) / 2.0 : a[a.size/2]}"
