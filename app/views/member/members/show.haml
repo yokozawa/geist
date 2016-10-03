@@ -8,8 +8,8 @@
         %ul
           - q.my_answers.each do |a|
             %li
-              = "回答月：a.created_at.strftime(\"%Y-%m\")"
-              = "回答文：a.body"
+              = "回答月：#{a.created_at.strftime(\"%Y-%m\")}"
+              = "回答文：#{a.body}"
     - if q.radio_5?
       %dd
         = "平均点：#{q.my_answers.average(:score).to_f.round(2)}"
