@@ -2,7 +2,7 @@ namespace :batch do
 
   task set_answer_target: :environment do
     Rake::Task['batch:clear_answer_target'].invoke
-    ids = Member.all.pluck(:id)
+    ids = Member.where.not(id: [3, 5, 6, 7, 12]).pluck(:id)
     Member.find_each do |m|
       others = ids.reject{|v| v == m.id}
       targets = []
