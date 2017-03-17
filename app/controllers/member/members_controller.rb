@@ -35,6 +35,7 @@ class Member::MembersController < Member::AppController
     @questions = Question.all.each do |q|
       q.my_answers = current_member.answers.where(question_id: q.id).order("id DESC")
     end
+    @my_scores = current_member.answers.summary_score
   end
 
   private

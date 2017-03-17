@@ -55,7 +55,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'pry'
-  gem 'pry-debugger'
+  gem 'pry-byebug'
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'rails-erd'
