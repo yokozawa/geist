@@ -1,14 +1,9 @@
 %h1="#{current_member.name}さんの評価"
 
-  %dl
-    %dt 会社、事業に貢献していますか？
-      %dd
-
-
 - @questions.each do |q|
   %dl
-    %dt= q.subtitle
     - if q.text?
+      %dt= q.subtitle
       %dd
         %ul
           - q.my_answers.each do |a|
@@ -16,7 +11,11 @@
               = "回答月：#{a.created_at.strftime('%Y-%m')}"
               = "回答文：#{a.body}"
     - if q.radio_5?
+      %dt= q.subtitle
       %dd
         %ul
           - @my_scores.each do |s|
             %li
+              = "年月：#{s.date}"
+              = "平均点：#{s.average.round(2)}"
+              = "NPS：#{s.nps}"

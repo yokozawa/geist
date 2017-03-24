@@ -23,6 +23,7 @@ class Member < ActiveRecord::Base
       	and score is not null
       group by
       	to_char(created_at, 'YYYY-MM')
+      order by 1 desc
     "
     Answer.find_by_sql(sql)
   end
