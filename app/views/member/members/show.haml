@@ -16,8 +16,7 @@
               = "回答月：#{a.created_at.strftime('%Y-%m')}"
               = "回答文：#{a.body}"
     - if q.radio_5?
-      - @my_scores.each do |s|
-        %dd
-          = "年月：#{s.date}"
-          = "平均点：#{s.average}"
-          = "NPS：#{s.nps}"
+      %dd
+        %ul
+          - @my_scores.each do |s|
+            %li
